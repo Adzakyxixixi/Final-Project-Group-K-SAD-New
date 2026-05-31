@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papicilo Laundry</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="logo-title">PAPICILO</span>
+                <span class="logo-subtitle">LAUNDRY KOIN EXPRESS</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: rgba(255,255,255,0.5);">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ulasan">Ulasan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lokasi">Lokasi Cabang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hubungi">Hubungi Kami</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="home">
+        <div class="container h-100">
+            <div class="row align-items-center h-100">
+                <div class="col-lg-5 col-md-12 text-section">
+                    <div class="section-subtitle">Tentang Kami</div>
+                    <h1 class="hero-title text-red">Dipercaya</h1>
+                    <h1 class="hero-title text-blue">Ribuan</h1>
+                    <h1 class="hero-title text-blue">Pelanggan</h1>
+                </div>
+
+                <div class="col-lg-7 col-md-12">
+                    <div class="image-grid">
+                        <img src="asset/image 39.png" alt="Laundry Interior" class="gallery-item img-large">
+                        <img src="asset/image 40.png" alt="Signage Papan Nama" class="gallery-item img-small-top">
+                        <img src="asset/image 41.png" alt="Tampak Depan Malam" class="gallery-item img-small-bottom">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="review-section" id="ulasan">
+        <div class="bg-shape-top-review"></div>
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-7">
+                    <h2 class="review-title">
+                        Ulasan dari <span class="text-red fst-italic">Kamu</span>
+                    </h2>
+                </div>
+                <div class="col-md-5">
+                    <div class="review-stats">
+                        <div class="stats-number text-red">700+</div>
+                        <div class="stats-text">Review di Google Maps</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">
+                                <svg viewBox="0 0 24 24" fill="#0E5C8D" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.6 0-10.7 1.8-10.7 5.4v2h21.4v-2c0-3.6-7.1-5.4-10.7-5.4z"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="reviewer-name">Heru</h5>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">Solusi untuk kaum mendang mending yang perjalanan ke luar kota, cuci kering baju 1 jam beres. Liburan pun tetap ftesh, terimakasih buat papicilo</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">
+                                <svg viewBox="0 0 24 24" fill="#0E5C8D" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.6 0-10.7 1.8-10.7 5.4v2h21.4v-2c0-3.6-7.1-5.4-10.7-5.4z"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="reviewer-name">Nay Azahra</h5>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">Suka bgt laundry di sini, deket dr kos dannn servicenya bener2 okeee, tempatnya jg bersih</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">
+                                <svg viewBox="0 0 24 24" fill="#0E5C8D" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.6 0-10.7 1.8-10.7 5.4v2h21.4v-2c0-3.6-7.1-5.4-10.7-5.4z"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="reviewer-name">Niko</h5>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">Self Service Laundry yang rekomen sih, hasil nya bersih dan cepat juga cuma 1 jam dah kelar. Cuma 20 ribuan aja buat cuci kering nya. Udah...</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">
+                                <svg viewBox="0 0 24 24" fill="#0E5C8D" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.6 0-10.7 1.8-10.7 5.4v2h21.4v-2c0-3.6-7.1-5.4-10.7-5.4z"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="reviewer-name">Lala</h5>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">pelayanan nya sangat ramahhh, ada berbagai macam mainan juga yang bisa di pake sambil nunggu cuciannya selesaii, pokoknya bestt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12 text-md-start text-center">
+                    <h2 class="features-title">
+                        <span class="text-blue">Mengapa Memilih</span> <span class="text-red">Papicilo?</span>
+                    </h2>
+                    <p class="features-subtitle">Layanan Cepat, Bersih, Ramah, dan Professional</p>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <h4 class="feature-text-small">Layanan</h4>
+                        <div class="feature-text-large">24</div>
+                        <h4 class="feature-text-small">Jam</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <h4 class="feature-text-small">One Machine</h4>
+                        <div class="feature-icon-wrapper">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 2H5C3.34 2 2 3.34 2 5V19C2 20.66 3.34 22 5 22H19C20.66 22 22 20.66 22 19V5C22 3.34 20.66 2 19 2ZM10 6H14C14.55 6 15 6.45 15 7C15 7.55 14.55 8 14 8H10C9.45 8 9 7.55 9 7C9 6.45 9.45 6 10 6ZM5 6H7V8H5V6ZM12 20C8.69 20 6 17.31 6 14C6 10.69 8.69 8 12 8C15.31 8 18 10.69 18 14C18 17.31 15.31 20 12 20ZM12 10C9.79 10 8 11.79 8 14C8 16.21 9.79 18 12 18C14.21 18 16 16.21 16 14C16 11.79 14.21 10 12 10ZM12 16C10.9 16 10 15.1 10 14C10 12.9 10.9 12 12 12C13.1 12 14 12.9 14 14C14 15.1 13.1 16 12 16Z"/></svg>
+                        </div>
+                        <h4 class="feature-text-small">One Customer</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <h4 class="feature-text-small">Layanan</h4>
+                        <div class="feature-icon-wrapper">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 14H4V12H1V14ZM1 10H5V8H1V10ZM21.5 10L19.1 6.4C18.8 5.9 18.3 5.6 17.7 5.6H14.7V4C14.7 2.9 13.8 2 12.7 2H7C5.9 2 5 2.9 5 4V11H7C7 9.3 8.3 8 10 8C11.7 8 13 9.3 13 11H16.2L17.8 13.4H21V12C21 11.1 21.7 10.4 22.6 10.4H23V8.4H20.5C19.7 8.4 19 9.1 19 10V10.4H21.5V10ZM9 4H12V8H9V4ZM10 14C8.9 14 8 14.9 8 16C8 17.1 8.9 18 10 18C11.1 18 12 17.1 12 16C12 14.9 11.1 14 10 14ZM20 14C18.9 14 18 14.9 18 16C18 17.1 18.9 18 20 18C21.1 18 22 17.1 22 16C22 14.9 21.1 14 20 14Z"/></svg>
+                        </div>
+                        <h4 class="feature-text-small">Antar Jemput</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-shape-bottom-features"></div>
+    </section>  
+
+    <section class="services-section" id="layanan">
+        <div class="container-fluid px-4 px-lg-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="services-title">
+                        Pilih Layanan Sesuai Kebutuhan <span class="text-red">Anda</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+                <div class="col">
+                    <div class="pricing-card">
+                        <div class="pricing-type">Self Service</div>
+                        <div class="pricing-duration">
+                            <span class="pricing-number">1</span>
+                            <span class="pricing-unit">Jam</span>
+                        </div>
+                        <div class="pricing-price">IDR6.000/Jam</div>
+                        <div class="pricing-hover-text">Klik untuk Pesan ➔</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pricing-card">
+                        <div class="pricing-type">Express</div>
+                        <div class="pricing-duration">
+                            <span class="pricing-number">3</span>
+                            <span class="pricing-unit">Jam</span>
+                        </div>
+                        <div class="pricing-price">IDR40.000/Kg</div>
+                        <div class="pricing-hover-text">Klik untuk Pesan ➔</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pricing-card">
+                        <div class="pricing-type">Express</div>
+                        <div class="pricing-duration">
+                            <span class="pricing-number">6</span>
+                            <span class="pricing-unit">Jam</span>
+                        </div>
+                        <div class="pricing-price">IDR25.000/Kg</div>
+                        <div class="pricing-hover-text">Klik untuk Pesan ➔</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pricing-card">
+                        <div class="pricing-type">Express</div>
+                        <div class="pricing-duration">
+                            <span class="pricing-number">9</span>
+                            <span class="pricing-unit">Jam</span>
+                        </div>
+                        <div class="pricing-price">IDR20.000/Kg</div>
+                        <div class="pricing-hover-text">Klik untuk Pesan ➔</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="pricing-card">
+                        <div class="pricing-type">Reguler</div>
+                        <div class="pricing-duration">
+                            <span class="pricing-number">24</span>
+                            <span class="pricing-unit">Jam</span>
+                        </div>
+                        <div class="pricing-price">IDR12.500/Kg</div>
+                        <div class="pricing-hover-text">Klik untuk Pesan ➔</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-shape-bottom-services"></div>
+    </section>
+
+    <!-- =========================
+         6. LOKASI SECTION
+    ========================== -->
+    <section class="locations-section" id="lokasi">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="locations-title">
+                        Temukan <span class="text-red">Kami</span> di
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Outlet Jakal -->
+            <div class="location-card location-card-dark">
+                <div class="row align-items-center h-100">
+                    <div class="col-md-5 mb-3 mb-md-0 h-100">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Outlet Jakal" class="location-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="location-text-content">
+                            <h3 class="location-name">Outlet <span class="text-red">Jakal</span></h3>
+                            
+                            <div class="detail-row"><div class="detail-label">Alamat</div><div class="detail-colon">:</div><div class="detail-value">Jl. Kaliurang No.18, Manggung, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55284</div></div>
+                            <div class="detail-row"><div class="detail-label">Google Maps</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://maps.app.goo.gl/yUHRdXcE9HwxfTaH8" target="_blank" class="location-link">Papicilo Laundry Koin Express</a></div></div>
+                            <div class="detail-row"><div class="detail-label">Whatsapp</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/6282134353607" target="_blank" class="location-link">082134353607</a></div></div>
+                            <div class="detail-row"><div class="detail-label">No. HP</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/6282134353607" target="_blank" class="location-link">082134353607</a></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outlet Prawirotaman -->
+            <div class="location-card location-card-light">
+                <div class="row align-items-center h-100">
+                    <div class="col-md-7 order-2 order-md-1">
+                        <div class="location-text-content">
+                            <h3 class="location-name">Outlet <span class="text-red">Prawirotaman</span></h3>
+                            
+                            <div class="detail-row"><div class="detail-label">Alamat</div><div class="detail-colon">:</div><div class="detail-value">Jl. Parangtritis No.54, Danunegaran, Kec. Mantrijeron, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55143</div></div>
+                            <div class="detail-row"><div class="detail-label">Google Maps</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://maps.app.goo.gl/EqphEUgAKtx3J5qUA" target="_blank" class="location-link">Papicilo Laundry Koin Express Prawirotaman</a></div></div>
+                            <div class="detail-row"><div class="detail-label">Whatsapp</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/6288219603020" target="_blank" class="location-link">+6288219603020</a></div></div>
+                            <div class="detail-row"><div class="detail-label">No. HP</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/6288219603020" target="_blank" class="location-link">+6288219603020</a></div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3 mb-md-0 h-100 order-1 order-md-2">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Outlet Prawirotaman" class="location-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outlet Timoho -->
+            <div class="location-card location-card-dark">
+                <div class="row align-items-center h-100">
+                    <div class="col-md-5 mb-3 mb-md-0 h-100">
+                        <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Outlet Timoho" class="location-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="location-text-content">
+                            <h3 class="location-name">Outlet <span class="text-red">Timoho</span></h3>
+                            
+                            <div class="detail-row"><div class="detail-label">Alamat</div><div class="detail-colon">:</div><div class="detail-value">Jl. Timoho No.143, Demangan, Kec. Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55221</div></div>
+                            <div class="detail-row"><div class="detail-label">Google Maps</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://maps.app.goo.gl/LfUS3AvtFJCGpJ6H9" target="_blank" class="location-link">Papicilo Laundry Koin Express Timoho</a></div></div>
+                            <div class="detail-row"><div class="detail-label">Whatsapp</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/62882174715533" target="_blank" class="location-link">082174715533</a></div></div>
+                            <div class="detail-row"><div class="detail-label">No. HP</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/62882174715533" target="_blank" class="location-link">082174715533</a></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outlet Demangan Baru -->
+            <div class="location-card location-card-light">
+                <div class="row align-items-center h-100">
+                    <div class="col-md-7 order-2 order-md-1">
+                        <div class="location-text-content">
+                            <h3 class="location-name">Outlet <span class="text-red">Demangan Baru</span></h3>
+                            
+                            <div class="detail-row"><div class="detail-label">Alamat</div><div class="detail-colon">:</div><div class="detail-value">Jl. Demangan Baru No.3, Demangan Baru, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</div></div>
+                            <div class="detail-row"><div class="detail-label">Google Maps</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://maps.app.goo.gl/B1FuYJA7szbZbAkX8" target="_blank" class="location-link">Papicilo Laundry Koin Express Demangan Baru</a></div></div>
+                            <div class="detail-row"><div class="detail-label">Whatsapp</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/6282224284445" target="_blank" class="location-link">082224284445</a></div></div>
+                            <div class="detail-row"><div class="detail-label">No. HP</div><div class="detail-colon">:</div><div class="detail-value"><a href="https://wa.me/6282224284445" target="_blank" class="location-link">082224284445</a></div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3 mb-md-0 h-100 order-1 order-md-2">
+                        <img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Outlet Demangan Baru" class="location-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section" id="hubungi">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="footer-title-small">Ayo Laundry Pakaianmu di</h2>
+                    <h1 class="footer-title-large">Papicilo Laundry</h1>
+                    
+                    <div class="footer-contact-wrapper">
+                        <div class="footer-contact-title">Kontak & Media Sosial</div>
+                        
+                        <a href="https://wa.me/6282134353607" target="_blank" class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 19.98C10.58 19.98 9.14 19.59 7.87 18.84L7.57 18.66L4.46 19.48L5.28 16.45L5.09 16.14C4.26 14.83 3.82 13.31 3.82 11.91C3.82 7.37 7.51 3.68 12.06 3.68C14.26 3.68 16.33 4.54 17.89 6.1C19.45 7.66 20.31 9.72 20.31 11.93C20.31 16.47 16.62 20.16 12.05 19.98ZM16.58 13.84C16.33 13.72 15.1 13.11 14.87 13.03C14.65 12.94 14.48 12.9 14.31 13.15C14.15 13.4 13.68 13.97 13.53 14.13C13.38 14.3 13.23 14.32 12.98 14.19C12.73 14.07 11.93 13.8 10.98 12.96C10.24 12.3 9.74 11.48 9.59 11.23C9.44 10.98 9.57 10.84 9.7 10.72C9.81 10.61 9.95 10.43 10.08 10.28C10.2 10.13 10.25 10.03 10.33 9.86C10.41 9.69 10.37 9.55 10.31 9.43C10.25 9.3 9.75 8.08 9.54 7.57C9.34 7.07 9.14 7.14 8.99 7.14C8.84 7.14 8.67 7.13 8.5 7.13C8.33 7.13 8.06 7.2 7.84 7.45C7.61 7.7 6.99 8.28 6.99 9.46C6.99 10.64 7.86 11.78 7.99 11.95C8.11 12.12 9.68 14.54 12.06 15.57C12.63 15.82 13.07 15.96 13.43 16.08C14.01 16.26 14.53 16.23 14.94 16.16C15.4 16.08 16.33 15.58 16.53 15.02C16.73 14.46 16.73 13.97 16.66 13.86C16.59 13.75 16.42 13.68 16.58 13.84Z"/>
+                            </svg>
+                            <span>082134353607</span>
+                        </a>
+
+                        <a href="https://instagram.com/papicilo.id" target="_blank" class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <span>@papicilo.id</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-shape-bottom-footer"></div>
+    </footer>
+
+    <div class="modal fade custom-modal" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title fw-bold text-blue" id="orderModalLabel">Form Pemesanan</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                        Anda memilih layanan: <span id="selectedServiceBadge" class="badge bg-danger rounded-pill px-3 py-2 ms-1"></span>
+                    </p>
+                    
+                    <form id="orderForm">
+                        <div class="mb-3">
+                            <label for="inputNama" class="form-label fw-bold text-blue">Nama Lengkap</label>
+                            <input type="text" class="form-control custom-input" id="inputNama" required placeholder="Masukkan nama Anda">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputHP" class="form-label fw-bold text-blue">Nomor WhatsApp / HP</label>
+                            <input type="tel" class="form-control custom-input" id="inputHP" required placeholder="Contoh: 08123456789">
+                        </div>
+                        <div class="mb-4">
+                            <label for="inputAlamat" class="form-label fw-bold text-blue">Alamat Pengambilan/Pengiriman</label>
+                            <textarea class="form-control custom-input" id="inputAlamat" rows="3" required placeholder="Masukkan alamat lengkap dengan patokan..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 custom-btn-submit">Submit Pesanan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade custom-modal" id="summaryModal" tabindex="-1" aria-labelledby="summaryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header pb-0 border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center pt-0">
+                    <div class="summary-icon-wrapper">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.00016 16.1698L4.83016 12L3.41016 13.41L9.00016 19L21.0002 6.99997L19.5902 5.58997L9.00016 16.1698Z"/>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="fw-bold text-blue mb-1" id="summaryModalLabel">Berhasil!</h3>
+                    <p class="text-muted mb-4">Berikut adalah detail pesanan Anda:</p>
+                    
+                    <div class="summary-box text-start">
+                        <div class="row border-bottom pb-2 mb-2">
+                            <div class="col-4 fw-bold text-blue">Layanan</div>
+                            <div class="col-8 text-danger fw-bold" id="summaryService"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 fw-bold text-blue">Nama</div>
+                            <div class="col-8 text-muted" id="summaryNama"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 fw-bold text-blue">No. HP</div>
+                            <div class="col-8 text-muted" id="summaryHP"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 fw-bold text-blue">Alamat</div>
+                            <div class="col-8 text-muted" id="summaryAlamat"></div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary w-100 custom-btn-submit mt-4" data-bs-dismiss="modal">Selesai</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade custom-modal" id="selfServiceModal" tabindex="-1" aria-labelledby="selfServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content" style="background-color: #F4F7F9;">
+                <div class="modal-header border-0 pb-0 justify-content-center position-relative">
+                    <h3 class="modal-title fw-bold text-blue text-center w-100 mt-2" id="selfServiceModalLabel" style="font-size: 2rem;">Layanan Self Service</h3>
+                    <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 p-lg-5 pt-3">
+                    
+                    <ul class="nav nav-pills justify-content-center mb-4 custom-tabs" id="machineTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pilih-cuci-tab" data-bs-toggle="pill" data-bs-target="#pilih-cuci" type="button" role="tab" aria-controls="pilih-cuci" aria-selected="true">Mesin Cuci</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pilih-pengering-tab" data-bs-toggle="pill" data-bs-target="#pilih-pengering" type="button" role="tab" aria-controls="pilih-pengering" aria-selected="false">Pengering</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="machineTabsContent">
+                        
+                        <div class="tab-pane fade show active" id="pilih-cuci" role="tabpanel" aria-labelledby="pilih-cuci-tab">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Mesin Cuci 1</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-green"></span><span class="dot dot-green"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-ready w-100">Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Mesin Cuci 2</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-red"></span><span class="dot dot-red"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-not-ready w-100" disabled>Not Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Mesin Cuci 3</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-red"></span><span class="dot dot-red"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-not-ready w-100" disabled>Not Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Mesin Cuci 4</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-green"></span><span class="dot dot-green"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-ready w-100">Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Mesin Cuci 5</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-green"></span><span class="dot dot-green"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-ready w-100">Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Mesin Cuci 6</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-green"></span><span class="dot dot-green"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-ready w-100">Ready</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="pilih-pengering" role="tabpanel" aria-labelledby="pilih-pengering-tab">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Pengering 1</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-green"></span><span class="dot dot-green"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-ready w-100">Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Pengering 2</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-red"></span><span class="dot dot-red"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-not-ready w-100" disabled>Not Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Pengering 3</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-red"></span><span class="dot dot-red"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-not-ready w-100" disabled>Not Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Pengering 4</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-red"></span><span class="dot dot-red"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-not-ready w-100" disabled>Not Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Pengering 5</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-red"></span><span class="dot dot-red"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-not-ready w-100" disabled>Not Ready</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="machine-card">
+                                        <div class="machine-title">Pengering 6</div>
+                                        <div class="custom-machine-icon">
+                                            <div class="machine-panel"><span class="dot dot-red"></span><span class="dot dot-red"></span></div>
+                                            <div class="machine-door"></div>
+                                        </div>
+                                        <button class="btn btn-not-ready w-100" disabled>Not Ready</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade custom-modal" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #F4F7F9;">
+                <div class="modal-body p-4 p-lg-5">
+                    
+                    <button type="button" class="btn btn-link text-decoration-none text-blue fw-bold p-0 mb-4" id="btnBackToForm">
+                        &larr; Kembali
+                    </button>
+                    
+                    <h3 class="fw-bold text-blue text-center mb-4" id="paymentModalLabel">Penyelesaian Transaksi</h3>
+                    
+                    <div class="selected-machine-card mb-5">
+                        <h4 class="text-white text-center fw-bold mb-3" id="paymentMachineName">Mesin Cuci 4</h4>
+                        
+                        <div class="custom-machine-icon mx-auto" id="paymentMachineIcon">
+                            <div class="machine-panel"><span class="dot dot-green"></span><span class="dot dot-green"></span></div>
+                            <div class="machine-door"></div>
+                        </div>
+                    </div>
+
+                    <h5 class="fw-bold text-blue text-center mb-3">Metode Pembayaran</h5>
+                    <div class="d-grid gap-3">
+                        <button class="btn payment-method-btn d-flex justify-content-between align-items-center" data-method="QRIS">
+                            <span class="fw-bold" style="font-size: 1.1rem;">Qris</span>
+                            <span class="fw-bold" style="font-size: 0.9rem;">QRIS</span>
+                        </button>
+                        
+                        <button class="btn payment-method-btn d-flex justify-content-between align-items-center" data-method="Gopay">
+                            <span class="fw-bold" style="font-size: 1.1rem;">Gopay</span>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="5" width="20" height="14" rx="2" stroke="white" stroke-width="2" fill="none"/>
+                                <line x1="2" y1="10" x2="22" y2="10" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade custom-modal" id="qrisModal" tabindex="-1" aria-labelledby="qrisModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content qris-modal-content">
+                
+                <div class="qris-header">
+                    <span class="qris-title">Selesaikan Pembayaran</span>
+                    <span class="qris-timer" id="qrisTimerText">05:00</span>
+                </div>
+                
+                <div class="qris-progress-container">
+                    <div class="qris-progress-bar" id="qrisProgressBar"></div>
+                </div>
+                
+                <div class="modal-body text-center p-4">
+                    <div class="qris-qr-wrapper mb-4">
+                        <img src="asset/qris.png" alt="QRIS Code" class="img-fluid" style="width: 100%; border-radius: 8px;">
+                    </div>
+                    
+                    <button type="button" class="btn btn-cancel-payment w-100" id="btnCancelQris">
+                        Batalkan Pembayaran
+                    </button>
+
+                    <button type="button" class="btn btn-link text-white opacity-50 mt-2" style="font-size: 0.8rem; text-decoration: none;" id="btnSimulateSuccess">
+                        (Simulasikan Bayar Berhasil)
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>

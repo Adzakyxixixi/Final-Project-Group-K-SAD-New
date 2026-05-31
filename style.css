@@ -1,0 +1,895 @@
+/* --- Pengaturan Dasar & Variabel --- */
+html {
+    scroll-behavior: smooth; /* Membuat efek scroll yang halus dari Navbar */
+}
+
+:root {
+    --primary-blue: #0E5C8D;
+    --text-blue: #1A5475;
+    --text-red: #D31A1A;
+    --bg-gradient: linear-gradient(135deg, #fdfdfd 0%, #e6e9ee 100%);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- Navbar Styles --- */
+.navbar {
+    background-color: var(--primary-blue);
+    padding: 12px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.logo-title {
+    color: var(--text-blue);
+    font-weight: 900;
+    font-size: 1.4rem;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.logo-subtitle {
+    color: var(--text-red);
+    font-weight: 800;
+    font-size: 0.55rem;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 12px;
+    padding-bottom: 5px;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* --- Hero Section Styles --- */
+.hero-section {
+    padding: 120px 0 80px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.section-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-blue);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.section-subtitle::before,
+.section-subtitle::after {
+    content: "";
+    height: 1.5px;
+    width: 30px;
+    background-color: var(--text-blue);
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    text-shadow: 3px 4px 8px rgba(0,0,0,0.15);
+}
+
+.text-red { color: var(--text-red); }
+.text-blue { color: var(--text-blue); }
+
+/* --- Image Gallery Grid --- */
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    height: 480px;
+}
+
+.img-large { grid-column: 1 / 2; grid-row: 1 / 3; }
+.img-small-top { grid-column: 2 / 3; grid-row: 1 / 2; }
+.img-small-bottom { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+.gallery-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    z-index: 10;
+    position: relative;
+}
+
+/* --- Responsive Adjustments untuk Hero --- */
+@media (max-width: 991px) {
+    .hero-title { font-size: 3.5rem; }
+    .image-grid { height: 400px; margin-top: 50px; }
+}
+
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.8rem; }
+    .image-grid { 
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto auto auto;
+        height: auto;
+    }
+    .img-large, .img-small-top, .img-small-bottom {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        height: 250px;
+    }
+    .navbar-brand { margin-bottom: 10px; }
+}
+
+/* --- Bagian Ulasan (Review Section) --- */
+.review-section {
+    padding: 180px 0 80px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.bg-shape-top-review {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    background-color: var(--primary-blue);
+    clip-path: polygon(0 0, 100% 0, 100% 25%, 0 100%);
+    z-index: -1;
+}
+
+.review-title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--text-blue);
+    margin-bottom: 0;
+    letter-spacing: -1px;
+}
+
+.review-stats {
+    text-align: right;
+}
+
+.stats-number {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.stats-text {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-blue);
+}
+
+/* Styling Kartu Ulasan */
+.review-card {
+    background: linear-gradient(180deg, #A5CDE3 0%, #1A5E86 100%);
+    border-radius: 18px;
+    padding: 35px 30px;
+    height: 100%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.review-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.reviewer-avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.reviewer-name {
+    color: var(--text-blue);
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.stars {
+    color: #F8B82B;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-top: 2px;
+}
+
+.review-text {
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsif untuk tablet dan HP Section Review */
+@media (max-width: 991px) {
+    .review-title { font-size: 3rem; }
+    .stats-number { font-size: 3.5rem; }
+}
+
+@media (max-width: 768px) {
+    .review-section { padding-top: 100px; }
+    .bg-shape-top-review { height: 80px; }
+    .review-title { font-size: 2.5rem; }
+    .stats-number { font-size: 3rem; }
+    .review-stats { text-align: left; margin-top: 20px; margin-bottom: 30px; }
+    .review-card { padding: 25px 20px; }
+}
+
+/* --- Bagian Fitur (Mengapa Memilih) --- */
+.features-section {
+    padding: 100px 0 150px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.features-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+}
+
+.features-subtitle {
+    color: var(--text-blue);
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+.feature-card {
+    background: linear-gradient(180deg, #A5CDE3 0%, #1A5E86 100%);
+    border-radius: 18px;
+    padding: 40px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    cursor: default;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+.feature-text-small {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.feature-text-large {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 10px 0;
+    text-shadow: 3px 4px 8px rgba(0,0,0,0.3);
+}
+
+.feature-icon-wrapper {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-icon-wrapper svg {
+    width: 100px;
+    height: 100px;
+    fill: #E8F0F6;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+}
+
+.bg-shape-bottom-features {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background-color: var(--primary-blue);
+    clip-path: polygon(0 50%, 30% 100%, 100% 60%, 100% 100%, 0 100%);
+    z-index: -1;
+}
+
+@media (max-width: 991px) {
+    .features-title { font-size: 3rem; }
+    .feature-text-large { font-size: 5rem; }
+    .feature-icon-wrapper svg { width: 80px; height: 80px; }
+}
+
+@media (max-width: 768px) {
+    .features-section { padding: 60px 0 100px 0; }
+    .features-title { font-size: 2.3rem; text-align: center; }
+    .features-subtitle { text-align: center; }
+    .bg-shape-bottom-features { height: 100px; clip-path: polygon(0 60%, 50% 100%, 100% 70%, 100% 100%, 0 100%); }
+    .feature-card { padding: 30px 15px; }
+}
+
+/* --- Bagian Layanan (Pricing/Services Section) --- */
+.services-section {
+    padding: 80px 0 150px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.services-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-blue);
+    margin-bottom: 60px;
+    letter-spacing: -1px;
+    text-align: center;
+    text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+}
+
+.pricing-card {
+    background: linear-gradient(180deg, #A5CDE3 0%, #1A5E86 100%);
+    border-radius: 18px;
+    padding: 35px 15px; /* Padding disesuaikan agar isi muat */
+    height: 100%;
+    min-height: 270px; /* Memaksa semua kartu punya tinggi seragam */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    cursor: pointer; 
+    position: relative;
+    overflow: hidden; 
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.pricing-type {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    text-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.pricing-duration {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.pricing-number {
+    font-size: 4.2rem; /* Ukuran yang ideal untuk 5 kolom */
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 2px 3px 5px rgba(0,0,0,0.2);
+}
+
+.pricing-unit {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+}
+
+.pricing-price {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-top: auto; /* Memastikan harga selalu di dasar kartu */
+    text-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.pricing-hover-text {
+    position: absolute;
+    bottom: -50px; 
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: var(--text-red);
+    color: white;
+    font-weight: 700;
+    padding: 12px 0;
+    transition: bottom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pricing-card:hover .pricing-hover-text {
+    bottom: 0; 
+}
+
+.bg-shape-bottom-services {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background-color: var(--primary-blue);
+    clip-path: polygon(0 60%, 35% 100%, 100% 40%, 100% 100%, 0 100%);
+    z-index: -1;
+}
+
+/* Responsif untuk Layanan */
+@media (max-width: 1399px) {
+    .pricing-number { font-size: 3.5rem; }
+    .pricing-unit { font-size: 1.3rem; }
+    .pricing-type { font-size: 1.1rem; }
+    .pricing-price { font-size: 0.9rem; }
+}
+
+@media (max-width: 991px) {
+    .services-title { font-size: 2.8rem; }
+}
+
+@media (max-width: 768px) {
+    .services-section { padding: 60px 0 100px 0; }
+    .services-title { font-size: 2rem; margin-bottom: 40px; }
+    .bg-shape-bottom-services { height: 100px; clip-path: polygon(0 60%, 50% 100%, 100% 70%, 100% 100%, 0 100%); }
+    .pricing-card { padding: 30px 15px; }
+    .pricing-number { font-size: 4.5rem; } 
+    .pricing-unit { font-size: 1.8rem; }
+    .pricing-price { font-size: 1.2rem; }
+}
+
+/* --- Bagian Lokasi Cabang (Locations Section) --- */
+.locations-section {
+    padding: 80px 0 100px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.locations-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-blue);
+    margin-bottom: 50px;
+    letter-spacing: -1px;
+    text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+}
+
+.location-card-dark { background-color: #12537A; }
+.location-card-light { background-color: #0077B6; }
+
+.location-card {
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    cursor: default;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+.location-img {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.location-text-content {
+    padding: 20px 30px;
+}
+
+.location-name {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    text-shadow: 2px 3px 5px rgba(0,0,0,0.2);
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.detail-label {
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.detail-colon {
+    width: 15px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.detail-value {
+    flex-grow: 1;
+}
+
+@media (max-width: 991px) {
+    .locations-title { font-size: 2.8rem; }
+    .location-text-content { padding: 20px 10px; }
+    .location-name { font-size: 1.8rem; }
+    .detail-row { font-size: 0.85rem; }
+}
+
+@media (max-width: 768px) {
+    .locations-title { font-size: 2.2rem; text-align: center; }
+    .location-card { padding: 15px; margin-bottom: 30px; }
+    .location-img { min-height: 200px; margin-bottom: 15px; }
+    .location-text-content { padding: 5px; }
+    .detail-label { width: 85px; } 
+}
+
+/* --- Bagian Footer (Call to Action & Kontak) --- */
+.footer-section {
+    padding: 100px 0 220px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-title-small {
+    color: var(--text-blue);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0;
+    letter-spacing: -1px;
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.05);
+}
+
+.footer-title-large {
+    color: var(--text-red);
+    font-size: 5.5rem;
+    font-weight: 900;
+    margin-bottom: 40px;
+    letter-spacing: -2px;
+    text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+}
+
+.footer-contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer-contact-title {
+    color: var(--text-blue);
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-blue);
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+    width: fit-content;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-item:hover {
+    color: var(--text-red);
+    transform: translateX(10px);
+}
+
+.contact-icon {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+.bg-shape-bottom-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 280px;
+    background-color: var(--primary-blue);
+    clip-path: polygon(0 60%, 30% 100%, 80% 85%, 100% 75%, 100% 100%, 0 100%);
+    z-index: -1;
+}
+
+@media (max-width: 991px) {
+    .footer-title-small { font-size: 2.5rem; }
+    .footer-title-large { font-size: 4rem; }
+}
+
+@media (max-width: 768px) {
+    .footer-section { padding: 60px 0 150px 0; }
+    .footer-title-small { font-size: 1.8rem; text-align: center; }
+    .footer-title-large { font-size: 2.8rem; text-align: center; letter-spacing: -1px; }
+    .footer-contact-wrapper { align-items: center; margin-top: 30px; }
+    .contact-item { justify-content: center; }
+    .bg-shape-bottom-footer { height: 120px; clip-path: polygon(0 50%, 50% 100%, 100% 70%, 100% 100%, 0 100%); }
+}
+/* --- Styling Pop-up Self Service (Mesin) --- */
+.machine-card {
+    background: linear-gradient(180deg, #A5CDE3 0%, #2A7AA7 100%);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.machine-card:hover {
+    transform: translateY(-5px);
+}
+
+.machine-title {
+    color: white;
+    font-weight: 800;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Menggambar Ikon Mesin Cuci dengan CSS Murni */
+.custom-machine-icon {
+    background-color: #F8FAFC;
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    max-width: 130px;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    padding-top: 15px;
+    margin-bottom: 20px;
+}
+
+.machine-panel {
+    width: 75%;
+    height: 14px;
+    background-color: #94A3B8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 5px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+.dot-green { background-color: #4ADE80; }
+.dot-red { background-color: #F87171; }
+
+.machine-door {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%);
+    border-radius: 50%;
+    margin-top: 15px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.2), 0 2px 5px rgba(255,255,255,0.9);
+    border: 5px solid #F1F5F9;
+}
+
+/* Tombol Status Mesin */
+.btn-ready {
+    background-color: #5CB85C;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    transition: background-color 0.2s ease;
+}
+
+.btn-ready:hover {
+    background-color: #4CAE4C;
+    color: white;
+}
+
+.btn-not-ready {
+    background-color: #D9534F;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    cursor: not-allowed;
+}
+/* --- Styling Modal Pembayaran (Penyelesaian Transaksi) --- */
+.selected-machine-card {
+    background: linear-gradient(180deg, #81AFC9 0%, #1A5E86 100%);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.payment-method-btn {
+    background-color: #0077B6;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 20px;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.payment-method-btn:hover {
+    background-color: #005f92;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 119, 182, 0.4);
+}
+/* --- Styling Modal QRIS (Pembayaran) --- */
+.qris-modal-content {
+    background: linear-gradient(180deg, #005f92 0%, #0E5C8D 100%);
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.qris-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+}
+
+.qris-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.qris-timer {
+    font-weight: 500;
+    font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace; /* Agar angka tetap rata dan rapi */
+}
+
+/* Container untuk Loading Bar */
+.qris-progress-container {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.2); /* Warna rel redup */
+}
+
+/* Loading Bar Berjalan */
+.qris-progress-bar {
+    height: 100%;
+    width: 100%; /* Mulai dari 100% lalu menyusut */
+    background-color: #4ADE80; /* Warna Hijau Terang */
+    transition: width 1s linear; /* Animasi mulus setiap 1 detik */
+}
+
+.qris-qr-wrapper {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-cancel-payment {
+    background-color: #D35B5B;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-cancel-payment:hover {
+    background-color: #b84a4a;
+    color: white;
+    transform: translateY(-2px);
+}
+/* --- Styling Tabs Kustom (Self Service Kategori) --- */
+.custom-tabs .nav-link {
+    color: var(--primary-blue);
+    font-weight: 700;
+    border-radius: 30px;
+    padding: 10px 25px;
+    margin: 0 8px;
+    background-color: #E6E9EE;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.custom-tabs .nav-link:hover {
+    background-color: #d3d8e0;
+}
+
+.custom-tabs .nav-link.active {
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 10px rgba(14, 92, 141, 0.3);
+}
+/* --- Styling Link di Kartu Lokasi --- */
+.location-link {
+    color: inherit; /* Mengambil warna teks putih dari card */
+    text-decoration: none; /* Hilangkan garis bawah default */
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.location-link:hover {
+    color: #F8B82B; /* Berubah menjadi warna kuning keemasan saat kursor diarahkan */
+    text-decoration: underline;
+}
