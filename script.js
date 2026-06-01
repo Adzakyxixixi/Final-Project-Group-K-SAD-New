@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // === VALIDASI REAL-TIME INPUT HP (HANYA ANGKA) ===
         if (inputHP) {
             inputHP.addEventListener('input', function() {
+                // Menghapus semua karakter kecuali angka 0-9 saat diketik
                 this.value = this.value.replace(/[^0-9]/g, '');
             });
         }
@@ -81,11 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const unit = this.querySelector('.pricing-unit').innerText;
                 
                 if (type === 'self service' && selfServiceModal) {
+                    // Masuk ke tab pilihan mesin (Belum isi form)
                     selfServiceModal.show();
                 } else {
+                    // === LAYANAN EXPRESS & REGULER ===
                     currentServiceTitle = `${typeName} ${duration} ${unit}`;
                     document.getElementById('selectedServiceBadge').innerText = currentServiceTitle;
                     
+                    // Tampilkan kembali kolom alamat dan jadikan wajib isi
                     if (alamatContainer) alamatContainer.style.display = 'block';
                     if (inputAlamat) inputAlamat.setAttribute('required', 'required');
 
@@ -103,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentServiceTitle = `Self Service (${machineName})`;
                 document.getElementById('selectedServiceBadge').innerText = currentServiceTitle;
                 
+                // === LOGIKA SELF SERVICE: Sembunyikan form alamat & cabut kewajiban isinya ===
                 if (alamatContainer) alamatContainer.style.display = 'none';
                 if (inputAlamat) inputAlamat.removeAttribute('required');
 
@@ -224,76 +229,56 @@ document.addEventListener('DOMContentLoaded', () => {
             btnCancelQris.addEventListener('click', cancelQrisPayment);
         }
 
-        // H. INTEGRASI API: Fungsi Eksekusi ke Halaman "Berhasil" & Kirim ke Spreadsheet
+        // H. Fungsi Eksekusi ke Halaman "Berhasil" (Termasuk Simpan ke Spreadsheet)
         function executeSuccessFlow() {
-            // 1. Ambil Data
             const nama = document.getElementById('inputNama').value;
             const hp = document.getElementById('inputHP').value;
             const alamat = document.getElementById('inputAlamat').value;
-            const layananLengkap = `${currentServiceTitle} - via ${selectedPaymentMethod}`;
 
-            // 2. URL GOOGLE APPS SCRIPT
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwQNKsCjkbn_t6db8EaJfq3e8BNt7KQSvGSMzHhiP8mSPCgXIbnAbmJhdTD0Ev6ec-AYg/exec';
-            
-            // Ubah teks tombol menjadi loading
-            const btnSimulateSuccess = document.getElementById('btnSimulateSuccess');
-            let originalBtnText = "";
-            if(btnSimulateSuccess) {
-                originalBtnText = btnSimulateSuccess.innerHTML;
-                btnSimulateSuccess.innerHTML = '(Memproses Data...)';
-                btnSimulateSuccess.disabled = true;
+            // 1. Update UI Ringkasan Layar
+            document.getElementById('summaryService').innerText = `${currentServiceTitle} - via ${selectedPaymentMethod}`;
+            document.getElementById('summaryNama').innerText = `: ${nama}`;
+            document.getElementById('summaryHP').innerText = `: ${hp}`;
+
+            // === LOGIKA SELF SERVICE: Sembunyikan Alamat di Halaman Berhasil ===
+            if (currentServiceTitle.includes('Self Service')) {
+                if (summaryAlamatContainer) summaryAlamatContainer.style.display = 'none';
+            } else {
+                if (summaryAlamatContainer) summaryAlamatContainer.style.display = 'flex'; // Pakai flex agar sejajar
+                document.getElementById('summaryAlamat').innerText = `: ${alamat}`;
             }
 
-            // 3. Gunakan URLSearchParams agar mudah dibaca oleh Apps Script
-            const formKirim = new URLSearchParams();
-            formKirim.append('nama', nama || 'Tanpa Nama');
-            formKirim.append('hp', hp || 'Tanpa Nomor');
-            formKirim.append('alamat', alamat || 'Di Tempat (Self Service)');
-            formKirim.append('layanan', layananLengkap);
+            // Tutup Modal Pembayaran/QRIS
+            paymentModal.hide();
+            if(qrisModalElement && qrisModalElement.classList.contains('show')) {
+                clearInterval(countdownInterval);
+                qrisModal.hide();
+            }
 
-            // 4. Proses Pengiriman Data (Fetch)
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formKirim // Mengirim data sebagai Form URL Encoded
-            })
-            .then(response => {
-                // 5. Jika Berhasil, tampilkan ringkasan
-                document.getElementById('summaryService').innerText = layananLengkap;
-                document.getElementById('summaryNama').innerText = `: ${nama}`;
-                document.getElementById('summaryHP').innerText = `: ${hp}`;
+            // Tampilkan Ringkasan
+            setTimeout(() => {
+                summaryModal.show();
+            }, 500);
 
-                if (currentServiceTitle.includes('Self Service')) {
-                    if (summaryAlamatContainer) summaryAlamatContainer.style.display = 'none';
-                } else {
-                    if (summaryAlamatContainer) summaryAlamatContainer.style.display = 'flex'; 
-                    document.getElementById('summaryAlamat').innerText = `: ${alamat}`;
-                }
+            // ====================================================
+            // 2. PROSES PENGIRIMAN DATA KE SPREADSHEET (APPS SCRIPT)
+            // ====================================================
+            
+            // JANGAN LUPA: Ganti teks di bawah ini dengan URL Web App Apps Script milik Anda!
+            const scriptURL = 'MASUKKAN_URL_WEB_APP_SPREADSHEET_ANDA_DISINI'; 
+            
+            const formData = new FormData();
+            formData.append('layanan', currentServiceTitle);
+            formData.append('nama', nama);
+            formData.append('hp', hp);
+            // Jika Self Service, kirim teks "-" ke spreadsheet, jika tidak kirim isi alamat
+            formData.append('alamat', currentServiceTitle.includes('Self Service') ? '-' : alamat);
+            formData.append('metode', selectedPaymentMethod);
 
-                // Tutup modal sebelumnya (Payment / QRIS)
-                paymentModal.hide();
-                if(qrisModalElement && qrisModalElement.classList.contains('show')) {
-                    clearInterval(countdownInterval);
-                    qrisModal.hide();
-                }
-
-                // Munculkan Modal Sukses
-                setTimeout(() => {
-                    summaryModal.show();
-                }, 500);
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                alert('Gagal mengirim pesanan ke server. Silakan hubungi admin.');
-            })
-            .finally(() => {
-                // Kembalikan tombol seperti semula & kosongkan form
-                if(btnSimulateSuccess) {
-                    btnSimulateSuccess.innerHTML = originalBtnText;
-                    btnSimulateSuccess.disabled = false;
-                }
-                orderForm.reset();
-            });
+            // Pengiriman di belakang layar (tanpa pindah halaman)
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => console.log('Data sukses masuk Spreadsheet!', response))
+                .catch(error => console.error('Gagal simpan data!', error.message));
         }
 
         // Tombol testing untuk mensimulasikan pembayaran berhasil
