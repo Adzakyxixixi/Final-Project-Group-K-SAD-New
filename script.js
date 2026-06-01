@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const summaryModalElement = document.getElementById('summaryModal');
     const selfServiceModalElement = document.getElementById('selfServiceModal'); 
     const paymentModalElement = document.getElementById('paymentModal'); 
-    const qrisModalElement = document.getElementById('qrisModal'); // Modal Baru: QRIS
+    const qrisModalElement = document.getElementById('qrisModal'); 
     
     if(orderModalElement && summaryModalElement && paymentModalElement) {
         const orderModal = new bootstrap.Modal(orderModalElement);
@@ -55,9 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentServiceTitle = '';
         let selectedPaymentMethod = '';
         
-        // Variabel Timer
         let countdownInterval;
-        const totalTime = 300; // 5 menit = 300 detik
+        const totalTime = 300; 
+
+        // === ELEMEN FORM & ALAMAT ===
+        const alamatContainer = document.getElementById('alamatContainer');
+        const inputAlamat = document.getElementById('inputAlamat');
+        const summaryAlamatContainer = document.getElementById('summaryAlamatContainer');
+        const inputHP = document.getElementById('inputHP'); 
+
+        // === VALIDASI REAL-TIME INPUT HP (HANYA ANGKA) ===
+        if (inputHP) {
+            inputHP.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        }
 
         // A. Klik pada Kartu Layanan (Halaman Utama)
         const pricingCards = document.querySelectorAll('.pricing-card');
@@ -73,13 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     currentServiceTitle = `${typeName} ${duration} ${unit}`;
                     document.getElementById('selectedServiceBadge').innerText = currentServiceTitle;
+                    
+                    if (alamatContainer) alamatContainer.style.display = 'block';
+                    if (inputAlamat) inputAlamat.setAttribute('required', 'required');
+
                     orderForm.reset();
                     orderModal.show();
                 }
             });
         });
 
-        // B. Klik pada Tombol "Ready" di Pemilihan Mesin
+        // B. Klik pada Tombol "Ready" di Pemilihan Mesin (Self Service)
         const btnReadys = document.querySelectorAll('.btn-ready');
         btnReadys.forEach(btn => {
             btn.addEventListener('click', function() {
@@ -87,6 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentServiceTitle = `Self Service (${machineName})`;
                 document.getElementById('selectedServiceBadge').innerText = currentServiceTitle;
                 
+                if (alamatContainer) alamatContainer.style.display = 'none';
+                if (inputAlamat) inputAlamat.removeAttribute('required');
+
                 selfServiceModal.hide();
                 selfServiceModalElement.addEventListener('hidden.bs.modal', function handler() {
                     orderForm.reset();
@@ -135,29 +154,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedPaymentMethod = this.getAttribute('data-method');
                 
                 if (selectedPaymentMethod === 'QRIS' && qrisModal) {
-                    // Jika QRIS, buka Modal QR Code
                     paymentModal.hide();
                     paymentModalElement.addEventListener('hidden.bs.modal', function handler() {
-                        startQrisTimer(); // Jalankan waktu
+                        startQrisTimer(); 
                         qrisModal.show();
                         paymentModalElement.removeEventListener('hidden.bs.modal', handler);
                     });
                 } else if (selectedPaymentMethod === 'Gopay') {
-                    // Jika Gopay, langsung arahkan ke website Gopay
-                    
-                    // Opsi 1: Pindah halaman langsung (Buka di tab yang sama)
                     window.location.href = 'https://gopay.co.id/';
-                    
-                    // Opsi 2: Buka di tab baru (Hapus tanda // di bawah ini jika ingin pakai opsi 2, dan beri // pada opsi 1)
-                    // window.open('https://gopay.co.id/', '_blank');
                 } else {
-                    // Jika ada metode lain di masa depan
                     executeSuccessFlow();
                 }
             });
         });
 
-        // F. Fungsi Hitung Mundur (Timer) & Loading Bar QRIS
+        // F. Fungsi Hitung Mundur (Timer) QRIS
         function startQrisTimer() {
             clearInterval(countdownInterval);
             let timeLeft = totalTime;
@@ -165,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const timerText = document.getElementById('qrisTimerText');
             const progressBar = document.getElementById('qrisProgressBar');
 
-            // Format dan render pertama kali
             updateUI(timeLeft);
 
             countdownInterval = setInterval(() => {
@@ -174,28 +184,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
-                    // Waktu habis, otomatis kembali ke metode pembayaran
                     alert("Waktu pembayaran telah habis.");
                     cancelQrisPayment();
                 }
-            }, 1000); // 1000ms = 1 detik
+            }, 1000); 
 
             function updateUI(time) {
-                // Konversi ke format MM:SS
                 let minutes = Math.floor(time / 60);
                 let seconds = time % 60;
                 
-                // Tambahkan '0' di depan jika angka di bawah 10
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
                 
                 timerText.innerText = `${minutes}:${seconds}`;
 
-                // Menghitung persentase sisa untuk loading bar
                 let percentage = (time / totalTime) * 100;
                 progressBar.style.width = `${percentage}%`;
                 
-                // Ubah warna bar menjadi merah jika waktu tinggal < 1 menit
                 if (time < 60) {
                     progressBar.style.backgroundColor = "#F87171"; 
                 } else {
@@ -219,29 +224,79 @@ document.addEventListener('DOMContentLoaded', () => {
             btnCancelQris.addEventListener('click', cancelQrisPayment);
         }
 
-        // H. Fungsi Eksekusi ke Halaman "Berhasil" (Ringkasan)
+        // H. INTEGRASI API: Fungsi Eksekusi ke Halaman "Berhasil" & Kirim ke Spreadsheet
         function executeSuccessFlow() {
+            // 1. Ambil Data
             const nama = document.getElementById('inputNama').value;
             const hp = document.getElementById('inputHP').value;
             const alamat = document.getElementById('inputAlamat').value;
+            const layananLengkap = `${currentServiceTitle} - via ${selectedPaymentMethod}`;
 
-            document.getElementById('summaryService').innerText = `${currentServiceTitle} - via ${selectedPaymentMethod}`;
-            document.getElementById('summaryNama').innerText = `: ${nama}`;
-            document.getElementById('summaryHP').innerText = `: ${hp}`;
-            document.getElementById('summaryAlamat').innerText = `: ${alamat}`;
-
-            paymentModal.hide();
-            if(qrisModalElement && qrisModalElement.classList.contains('show')) {
-                clearInterval(countdownInterval);
-                qrisModal.hide();
+            // 2. URL GOOGLE APPS SCRIPT
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwQNKsCjkbn_t6db8EaJfq3e8BNt7KQSvGSMzHhiP8mSPCgXIbnAbmJhdTD0Ev6ec-AYg/exec';
+            
+            // Ubah teks tombol menjadi loading
+            const btnSimulateSuccess = document.getElementById('btnSimulateSuccess');
+            let originalBtnText = "";
+            if(btnSimulateSuccess) {
+                originalBtnText = btnSimulateSuccess.innerHTML;
+                btnSimulateSuccess.innerHTML = '(Memproses Data...)';
+                btnSimulateSuccess.disabled = true;
             }
 
-            setTimeout(() => {
-                summaryModal.show();
-            }, 500);
+            // 3. Gunakan URLSearchParams agar mudah dibaca oleh Apps Script
+            const formKirim = new URLSearchParams();
+            formKirim.append('nama', nama || 'Tanpa Nama');
+            formKirim.append('hp', hp || 'Tanpa Nomor');
+            formKirim.append('alamat', alamat || 'Di Tempat (Self Service)');
+            formKirim.append('layanan', layananLengkap);
+
+            // 4. Proses Pengiriman Data (Fetch)
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formKirim // Mengirim data sebagai Form URL Encoded
+            })
+            .then(response => {
+                // 5. Jika Berhasil, tampilkan ringkasan
+                document.getElementById('summaryService').innerText = layananLengkap;
+                document.getElementById('summaryNama').innerText = `: ${nama}`;
+                document.getElementById('summaryHP').innerText = `: ${hp}`;
+
+                if (currentServiceTitle.includes('Self Service')) {
+                    if (summaryAlamatContainer) summaryAlamatContainer.style.display = 'none';
+                } else {
+                    if (summaryAlamatContainer) summaryAlamatContainer.style.display = 'flex'; 
+                    document.getElementById('summaryAlamat').innerText = `: ${alamat}`;
+                }
+
+                // Tutup modal sebelumnya (Payment / QRIS)
+                paymentModal.hide();
+                if(qrisModalElement && qrisModalElement.classList.contains('show')) {
+                    clearInterval(countdownInterval);
+                    qrisModal.hide();
+                }
+
+                // Munculkan Modal Sukses
+                setTimeout(() => {
+                    summaryModal.show();
+                }, 500);
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('Gagal mengirim pesanan ke server. Silakan hubungi admin.');
+            })
+            .finally(() => {
+                // Kembalikan tombol seperti semula & kosongkan form
+                if(btnSimulateSuccess) {
+                    btnSimulateSuccess.innerHTML = originalBtnText;
+                    btnSimulateSuccess.disabled = false;
+                }
+                orderForm.reset();
+            });
         }
 
-        // (Opsional) Tombol testing untuk mensimulasikan pembayaran berhasil via QRIS
+        // Tombol testing untuk mensimulasikan pembayaran berhasil
         const btnSimulateSuccess = document.getElementById('btnSimulateSuccess');
         if(btnSimulateSuccess) {
             btnSimulateSuccess.addEventListener('click', executeSuccessFlow);
