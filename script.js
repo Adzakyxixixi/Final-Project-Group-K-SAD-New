@@ -234,9 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const nama = document.getElementById('inputNama').value;
             const hp = document.getElementById('inputHP').value;
             const alamat = document.getElementById('inputAlamat').value;
+            
+            // Gabungkan Layanan dan Metode jadi 1 string untuk Google Sheets
+            const layananLengkap = `${currentServiceTitle} - via ${selectedPaymentMethod}`;
 
             // 1. Update UI Ringkasan Layar
-            document.getElementById('summaryService').innerText = `${currentServiceTitle} - via ${selectedPaymentMethod}`;
+            document.getElementById('summaryService').innerText = layananLengkap;
             document.getElementById('summaryNama').innerText = `: ${nama}`;
             document.getElementById('summaryHP').innerText = `: ${hp}`;
 
@@ -254,8 +257,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(countdownInterval);
                 qrisModal.hide();
             }
+            
+            // Ubah teks tombol jadi loading
+            const btnSimulateSuccess = document.getElementById('btnSimulateSuccess');
+            let originalBtnText = "";
+            if(btnSimulateSuccess) {
+                originalBtnText = btnSimulateSuccess.innerHTML;
+                btnSimulateSuccess.innerHTML = '(Memproses Data...)';
+                btnSimulateSuccess.disabled = true;
+            }
 
-            // Tampilkan Ringkasan
+            // Tampilkan Modal Ringkasan Sukses
             setTimeout(() => {
                 summaryModal.show();
             }, 500);
@@ -264,21 +276,34 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. PROSES PENGIRIMAN DATA KE SPREADSHEET (APPS SCRIPT)
             // ====================================================
             
-            // JANGAN LUPA: Ganti teks di bawah ini dengan URL Web App Apps Script milik Anda!
-            const scriptURL = 'MASUKKAN_URL_WEB_APP_SPREADSHEET_ANDA_DISINI'; 
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwQNKsCjkbn_t6db8EaJfq3e8BNt7KQSvGSMzHhiP8mSPCgXIbnAbmJhdTD0Ev6ec-AYg/exec'; 
             
-            const formData = new FormData();
-            formData.append('layanan', currentServiceTitle);
-            formData.append('nama', nama);
-            formData.append('hp', hp);
-            // Jika Self Service, kirim teks "-" ke spreadsheet, jika tidak kirim isi alamat
-            formData.append('alamat', currentServiceTitle.includes('Self Service') ? '-' : alamat);
-            formData.append('metode', selectedPaymentMethod);
+            const formKirim = new URLSearchParams();
+            formKirim.append('layanan', layananLengkap);
+            formKirim.append('nama', nama || 'Tanpa Nama');
+            formKirim.append('hp', hp || 'Tanpa Nomor');
+            formKirim.append('alamat', currentServiceTitle.includes('Self Service') ? '-' : alamat);
 
-            // Pengiriman di belakang layar (tanpa pindah halaman)
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => console.log('Data sukses masuk Spreadsheet!', response))
-                .catch(error => console.error('Gagal simpan data!', error.message));
+            // Pengiriman di belakang layar
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors',
+                body: formKirim 
+            })
+            .then(response => {
+                console.log('Data sukses masuk Spreadsheet!');
+            })
+            .catch(error => {
+                console.error('Gagal simpan data!', error.message);
+            })
+            .finally(() => {
+                // Kembalikan form dan tombol seperti semula
+                if(btnSimulateSuccess) {
+                    btnSimulateSuccess.innerHTML = originalBtnText;
+                    btnSimulateSuccess.disabled = false;
+                }
+                orderForm.reset();
+            });
         }
 
         // Tombol testing untuk mensimulasikan pembayaran berhasil
