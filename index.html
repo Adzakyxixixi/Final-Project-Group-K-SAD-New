@@ -245,10 +245,8 @@
         </div>
         <div class="bg-shape-bottom-services"></div>
     </section>
+    
 
-    <!-- =========================
-         6. LOKASI SECTION
-    ========================== -->
     <section class="locations-section" id="lokasi">
         <div class="container">
             <div class="row mb-4">
@@ -259,7 +257,6 @@
                 </div>
             </div>
 
-            <!-- Outlet Jakal -->
             <div class="location-card location-card-dark">
                 <div class="row align-items-center h-100">
                     <div class="col-md-5 mb-3 mb-md-0 h-100">
@@ -278,7 +275,6 @@
                 </div>
             </div>
 
-            <!-- Outlet Prawirotaman -->
             <div class="location-card location-card-light">
                 <div class="row align-items-center h-100">
                     <div class="col-md-7 order-2 order-md-1">
@@ -297,7 +293,6 @@
                 </div>
             </div>
 
-            <!-- Outlet Timoho -->
             <div class="location-card location-card-dark">
                 <div class="row align-items-center h-100">
                     <div class="col-md-5 mb-3 mb-md-0 h-100">
@@ -316,7 +311,6 @@
                 </div>
             </div>
 
-            <!-- Outlet Demangan Baru -->
             <div class="location-card location-card-light">
                 <div class="row align-items-center h-100">
                     <div class="col-md-7 order-2 order-md-1">
@@ -386,9 +380,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="inputHP" class="form-label fw-bold text-blue">Nomor WhatsApp / HP</label>
-                            <input type="tel" class="form-control custom-input" id="inputHP" required placeholder="Contoh: 08123456789">
+                            <input type="tel" class="form-control custom-input" id="inputHP" required maxlength="15" placeholder="Contoh: 08123456789">
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-4" id="alamatContainer">
                             <label for="inputAlamat" class="form-label fw-bold text-blue">Alamat Pengambilan/Pengiriman</label>
                             <textarea class="form-control custom-input" id="inputAlamat" rows="3" required placeholder="Masukkan alamat lengkap dengan patokan..."></textarea>
                         </div>
@@ -428,7 +422,7 @@
                             <div class="col-4 fw-bold text-blue">No. HP</div>
                             <div class="col-8 text-muted" id="summaryHP"></div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="summaryAlamatContainer">
                             <div class="col-4 fw-bold text-blue">Alamat</div>
                             <div class="col-8 text-muted" id="summaryAlamat"></div>
                         </div>
@@ -602,7 +596,7 @@
                 <div class="modal-body p-4 p-lg-5">
                     
                     <button type="button" class="btn btn-link text-decoration-none text-blue fw-bold p-0 mb-4" id="btnBackToForm">
-                        &larr; Kembali
+                        ← Kembali
                     </button>
                     
                     <h3 class="fw-bold text-blue text-center mb-4" id="paymentModalLabel">Penyelesaian Transaksi</h3>
