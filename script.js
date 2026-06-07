@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ============================================================
-       UTILITY: VALIDASI & ERROR MESSAGE
-       ============================================================ */
     function showError(inputEl, msg) {
         let err = inputEl.parentElement.querySelector('.cd-error-msg');
         if (!err) {
@@ -46,9 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return valid;
     }
 
-    /* ============================================================
-       SETUP FIELD: NAMA — hanya huruf & spasi
-       ============================================================ */
+    
     const inputNama = document.getElementById('inputNama');
     if (inputNama) {
         inputNama.addEventListener('keypress', function(e) {
@@ -69,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ============================================================
-       SETUP FIELD: NOMOR HP — numerik, prefix +62, maks 13 digit
-       ============================================================ */
+   
     const inputHP = document.getElementById('inputHP');
     if (inputHP) {
         // Buat wrapper prefix +62
@@ -120,9 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ============================================================
-       SETUP FIELD: ALAMAT — maks 200 karakter + counter
-       ============================================================ */
+    
     const inputAlamat = document.getElementById('inputAlamat');
     if (inputAlamat) {
         inputAlamat.setAttribute('maxlength', '200');
@@ -144,9 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ============================================================
-       COMPLETENESS CHECK — tombol submit disable sampai semua valid
-       ============================================================ */
+    
     const submitBtn = document.querySelector('#orderForm button[type="submit"]');
 
     function updateSubmitBtn() {
@@ -172,9 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /* ============================================================
-       1. NAVBAR SCROLLSPY
-       ============================================================ */
+    
     const sections = document.querySelectorAll('section, footer');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -193,9 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ============================================================
-       2. INISIALISASI MODAL
-       ============================================================ */
+    
     const orderModal       = new bootstrap.Modal(document.getElementById('orderModal'));
     const summaryModal     = new bootstrap.Modal(document.getElementById('summaryModal'));
     const paymentModal     = new bootstrap.Modal(document.getElementById('paymentModal'));
@@ -207,9 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedPaymentMethod = '';
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_fyb9g26nXUKqpSr0tXsRzOOUfB7uUPLxw16cGBFmhdAoWdVtsO1LqtigxYOzuQGRrg/exec';
 
-    /* ============================================================
-       3. KLIK KARTU LAYANAN
-       ============================================================ */
+    
     document.querySelectorAll('.pricing-card').forEach(card => {
         card.addEventListener('click', function() {
             const type     = this.querySelector('.pricing-type').innerText.trim().toLowerCase();
@@ -229,9 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ============================================================
-       4. KLIK READY — RACE CONDITION HANDLER
-       ============================================================ */
+    
     const LOCK_TTL_MS = 5 * 60 * 1000; // 5 menit
 
     function lockMachine(id)   { try { localStorage.setItem('ml_' + id, Date.now().toString()); } catch(e) {} }
@@ -303,9 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Attach juga untuk yang mungkin sudah render sejak awal
     attachReadyButtons();
 
-    /* ============================================================
-       5. SUBMIT FORM — dengan validasi wajib
-       ============================================================ */
+    
     orderForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -325,9 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /* ============================================================
-       6. PILIH METODE BAYAR
-       ============================================================ */
+    
     document.querySelectorAll('.payment-method-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             selectedPaymentMethod = this.getAttribute('data-method');
@@ -342,9 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ============================================================
-       7. EXECUTE SUCCESS FLOW — kirim data + tampilkan summary
-       ============================================================ */
+    
     async function executeSuccessFlow() {
         window._paymentSuccess = true;
 
@@ -381,9 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window._activeMachineId) unlockMachine(window._activeMachineId);
     }
 
-    /* ============================================================
-       8. QRIS — simulasi & cancel
-       ============================================================ */
+    
     document.getElementById('btnSimulateSuccess')?.addEventListener('click', executeSuccessFlow);
 
     document.getElementById('btnCancelQris')?.addEventListener('click', () => {
@@ -400,10 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /* ============================================================
-       9. LOGIN ADMIN — LOCKOUT CONTROL
-       Aktif jika ada elemen #adminLoginForm di halaman
-       ============================================================ */
+    
     const MAX_ATTEMPTS = 5;
     const LOCKOUT_MS   = 15 * 60 * 1000;
     const STORAGE_KEY  = 'papicilo_login_attempts';
