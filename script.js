@@ -276,7 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. PROSES PENGIRIMAN DATA KE SPREADSHEET (APPS SCRIPT)
             // ====================================================
             
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwQNKsCjkbn_t6db8EaJfq3e8BNt7KQSvGSMzHhiP8mSPCgXIbnAbmJhdTD0Ev6ec-AYg/exec'; 
+            // INI ADALAH URL WEB APP YANG BARU
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz_fyb9g26nXUKqpSr0tXsRzOOUfB7uUPLxw16cGBFmhdAoWdVtsO1LqtigxYOzuQGRrg/exec'; 
             
             const formKirim = new URLSearchParams();
             formKirim.append('layanan', layananLengkap);
