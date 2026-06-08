@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return valid;
     }
 
-    
     const inputNama = document.getElementById('inputNama');
     if (inputNama) {
         inputNama.addEventListener('keypress', function(e) {
@@ -64,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-   
     const inputHP = document.getElementById('inputHP');
     if (inputHP) {
         // Buat wrapper prefix +62
@@ -113,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
     const inputAlamat = document.getElementById('inputAlamat');
     if (inputAlamat) {
         inputAlamat.setAttribute('maxlength', '200');
@@ -135,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
     const submitBtn = document.querySelector('#orderForm button[type="submit"]');
 
     function updateSubmitBtn() {
@@ -161,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
     const sections = document.querySelectorAll('section, footer');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -180,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    
     const orderModal       = new bootstrap.Modal(document.getElementById('orderModal'));
     const summaryModal     = new bootstrap.Modal(document.getElementById('summaryModal'));
     const paymentModal     = new bootstrap.Modal(document.getElementById('paymentModal'));
@@ -190,9 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderForm = document.getElementById('orderForm');
     let currentServiceTitle  = '';
     let selectedPaymentMethod = '';
+    
+    // URL GOOGLE APPS SCRIPT
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_fyb9g26nXUKqpSr0tXsRzOOUfB7uUPLxw16cGBFmhdAoWdVtsO1LqtigxYOzuQGRrg/exec';
 
-    
     document.querySelectorAll('.pricing-card').forEach(card => {
         card.addEventListener('click', function() {
             const type     = this.querySelector('.pricing-type').innerText.trim().toLowerCase();
@@ -206,13 +201,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentServiceTitle = `${typeName} ${duration} ${unit}`;
                 document.getElementById('selectedServiceBadge').innerText = currentServiceTitle;
                 orderForm.reset();
-                updateSubmitBtn(); // reset tombol saat form direset
+                updateSubmitBtn(); 
                 orderModal.show();
             }
         });
     });
 
-    
     const LOCK_TTL_MS = 5 * 60 * 1000; // 5 menit
 
     function lockMachine(id)   { try { localStorage.setItem('ml_' + id, Date.now().toString()); } catch(e) {} }
@@ -243,10 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btn) { btn.disabled = true; btn.textContent = 'Not Ready'; btn.classList.replace('btn-ready','btn-not-ready'); }
     }
 
-    // Attach ke semua tombol Ready — termasuk yang di dalam self-service modal
     function attachReadyButtons() {
         document.querySelectorAll('.btn-ready').forEach(btn => {
-            // Hapus listener lama supaya tidak double-bind
             btn.replaceWith(btn.cloneNode(true));
         });
         document.querySelectorAll('.btn-ready').forEach(btn => {
@@ -254,10 +246,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const card      = this.closest('.machine-card');
                 const machineId = card?.dataset.machineId || this.closest('[data-machine-id]')?.dataset.machineId || this.parentElement.querySelector('.machine-title')?.innerText || 'unknown';
 
-                // Set machineId ke card jika belum ada
                 if (card && !card.dataset.machineId) card.dataset.machineId = machineId;
 
-                // Cek race condition
                 if (isMachineLocked(machineId)) {
                     showMachineTaken(card);
                     return;
@@ -267,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 window._activeMachineId = machineId;
                 window._paymentSuccess  = false;
 
-                // Alur lanjut ke form / payment
                 currentServiceTitle = `Self Service (${card?.querySelector('.machine-title')?.innerText || machineId})`;
                 document.getElementById('selectedServiceBadge').innerText = currentServiceTitle;
                 orderForm.reset();
@@ -279,16 +268,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Attach saat selfServiceModal muncul
     document.getElementById('selfServiceModal')?.addEventListener('shown.bs.modal', attachReadyButtons);
-    // Attach juga untuk yang mungkin sudah render sejak awal
     attachReadyButtons();
 
-    
     orderForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // Jalankan validasi manual dulu
         if (!validateForm()) return;
 
         orderModal.hide();
@@ -304,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
     document.querySelectorAll('.payment-method-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             selectedPaymentMethod = this.getAttribute('data-method');
@@ -319,12 +303,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    
+    /* ══════════════════════════════════════
+       MENGIRIM PESANAN BARU KE GOOGLE SHEETS
+    ══════════════════════════════════════ */
     async function executeSuccessFlow() {
         window._paymentSuccess = true;
 
         const nama   = document.getElementById('inputNama').value;
-        const hp     = '+62' + document.getElementById('inputHP').value; // sertakan prefix
+        const hp     = '+62' + document.getElementById('inputHP').value;
         const alamat = document.getElementById('inputAlamat').value;
         const layananLengkap = `${currentServiceTitle} - via ${selectedPaymentMethod}`;
 
@@ -335,7 +321,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         [paymentModal, qrisModal, orderModal].forEach(m => m && m.hide());
 
+        // PENTING: Menambahkan action "newOrder" agar terbaca oleh Kode.gs
         const formKirim = new URLSearchParams();
+        formKirim.append('action', 'newOrder'); // <--- INI KUNCI UTAMANYA
         formKirim.append('layanan', layananLengkap);
         formKirim.append('nama', nama);
         formKirim.append('hp', hp);
@@ -352,11 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
         orderForm.reset();
         updateSubmitBtn();
 
-        // Unlock mesin setelah sesi selesai
         if (window._activeMachineId) unlockMachine(window._activeMachineId);
     }
 
-    
     document.getElementById('btnSimulateSuccess')?.addEventListener('click', executeSuccessFlow);
 
     document.getElementById('btnCancelQris')?.addEventListener('click', () => {
@@ -366,14 +352,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => paymentModal.show(), 500);
     });
 
-    // Unlock juga jika payment modal ditutup paksa (X)
     document.getElementById('paymentModal')?.addEventListener('hidden.bs.modal', function() {
         if (!window._paymentSuccess && window._activeMachineId) {
             unlockMachine(window._activeMachineId);
         }
     });
 
-    
+    /* ══════════════════════════════════════
+       LOGIN LOCKOUT SYSTEM
+    ══════════════════════════════════════ */
     const MAX_ATTEMPTS = 5;
     const LOCKOUT_MS   = 15 * 60 * 1000;
     const STORAGE_KEY  = 'papicilo_login_attempts';
@@ -416,12 +403,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const username = document.getElementById('adminUsername')?.value.trim();
             const password = document.getElementById('adminPassword')?.value.trim();
 
-            // Ganti dengan validasi ke server di implementasi nyata
             const loginSuccess = (username === 'admin' && password === 'papicilo123');
 
             if (loginSuccess) {
                 resetAttempts(); clearLoginError();
-                // window.location.href = '/admin/dashboard';
                 alert('Login berhasil!');
             } else {
                 const data = getAttemptData();
